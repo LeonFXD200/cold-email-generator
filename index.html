@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cold Email Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">&#9889;</span>
+        <span class="logo-text">Cold<span class="accent">Email</span>Gen</span>
+      </div>
+      <p class="tagline">Generate high-converting cold emails in seconds</p>
+    </div>
+  </header>
+
+  <main class="app-layout">
+    <!-- LEFT PANEL: INPUTS -->
+    <section class="panel panel-inputs" aria-label="Email configuration">
+      <h2 class="panel-title">Configure Your Email</h2>
+
+      <div class="form-group">
+        <label for="yourName">Your Name</label>
+        <input type="text" id="yourName" placeholder="e.g. Alex Johnson" autocomplete="name" />
+      </div>
+
+      <div class="form-group">
+        <label for="yourService">Your Service / Offer</label>
+        <input type="text" id="yourService" placeholder="e.g. web design, SEO, bookkeeping" />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="companyName">Company Name</label>
+          <input type="text" id="companyName" placeholder="e.g. Maple Street Bistro" />
+        </div>
+        <div class="form-group">
+          <label for="contactName">Contact First Name</label>
+          <input type="text" id="contactName" placeholder="e.g. Sarah" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="industry">Industry / Niche</label>
+        <select id="industry">
+          <option value="">-- Select an industry --</option>
+          <option value="restaurant">Restaurants &amp; Cafes</option>
+          <option value="lawfirm">Law Firms</option>
+          <option value="tradesperson">Tradespeople (Plumbers, Electricians, etc.)</option>
+          <option value="estateagent">Estate Agents / Realtors</option>
+          <option value="gym">Gyms &amp; Fitness Studios</option>
+          <option value="dentist">Dentists &amp; Orthodontists</option>
+          <option value="accountant">Accountants &amp; Bookkeepers</option>
+          <option value="ecommerce">Ecommerce Stores</option>
+          <option value="construction">Construction &amp; Builders</option>
+          <option value="salon">Hair Salons &amp; Barbers</option>
+          <option value="spa">Spas &amp; Beauty Clinics</option>
+          <option value="mortgage">Mortgage Brokers</option>
+          <option value="insurance">Insurance Agencies</option>
+          <option value="chiropractor">Chiropractors &amp; Physiotherapists</option>
+          <option value="marketing">Marketing Agencies</option>
+          <option value="recruiter">Recruiters &amp; Staffing Agencies</option>
+          <option value="coaching">Life &amp; Business Coaches</option>
+          <option value="photographer">Photographers &amp; Videographers</option>
+          <option value="architect">Architects &amp; Interior Designers</option>
+          <option value="vet">Veterinary Practices</option>
+          <option value="childcare">Childcare &amp; Nurseries</option>
+          <option value="software">Software / SaaS Companies</option>
+          <option value="retail">Retail Shops</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="painPoint">Pain Point Focus</label>
+        <select id="painPoint" disabled>
+          <option value="">-- Select an industry first --</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="framework">Email Framework</label>
+        <select id="framework">
+          <option value="aida">AIDA -- Attention to Interest to Desire to Action</option>
+          <option value="pas">PAS -- Problem to Agitation to Solution</option>
+          <option value="bab">BAB -- Before to After to Bridge</option>
+          <option value="straight">Straight-Line Pitch -- Direct, short, punchy</option>
+          <option value="valuefirst">Value-First -- Lead with a free insight before the pitch</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="tone">Tone</label>
+        <select id="tone">
+          <option value="casual">Casual</option>
+          <option value="professional">Professional</option>
+          <option value="direct">Direct</option>
+          <option value="friendly">Friendly</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="cta">Your Call to Action</label>
+        <input type="text" id="cta" placeholder="e.g. book a 15-min call, reply to this email" />
+      </div>
+
+      <div class="form-group">
+        <label for="hook">Personalisation Hook <span class="label-hint">optional</span></label>
+        <input type="text" id="hook" placeholder="e.g. I noticed your website has not been updated since 2019" />
+      </div>
+
+      <button class="btn-generate" id="btnGenerate" type="button">
+        <span class="btn-icon">&#9889;</span> Generate Email
+      </button>
+
+      <button class="btn-followup" id="btnFollowup" type="button" disabled>
+        <span class="btn-icon">&#128197;</span> Generate Follow-Up Sequence (Day 3 . Day 7 . Day 14)
+      </button>
+    </section>
+
+    <!-- RIGHT PANEL: OUTPUT -->
+    <section class="panel panel-output" aria-label="Generated email output" id="outputPanel">
+      <div class="output-placeholder" id="outputPlaceholder">
+        <div class="placeholder-icon">&#9993;</div>
+        <h3>Your email will appear here</h3>
+        <p>Fill in your details on the left and hit <strong>Generate Email</strong> to create a high-converting cold email tailored to your prospect.</p>
+      </div>
+
+      <div class="output-content" id="outputContent" hidden>
+        <div class="output-section">
+          <div class="section-header">
+            <h3 class="section-title">Subject Lines</h3>
+            <span class="section-badge">3 options -- click to copy</span>
+          </div>
+          <div class="subject-chips" id="subjectChips"></div>
+        </div>
+
+        <div class="output-section">
+          <div class="section-header">
+            <h3 class="section-title">Email Body</h3>
+            <div class="meta-badges">
+              <span class="badge badge-chars" id="charCount">0 chars</span>
+              <span class="badge badge-time" id="readTime">~0 sec read</span>
+              <span class="badge badge-grade" id="gradeScore">Grade --</span>
+              <span class="badge badge-spam" id="spamCount">0 spam words</span>
+            </div>
+          </div>
+          <div class="email-body-box" id="emailBodyBox"></div>
+        </div>
+
+        <div class="action-row">
+          <button class="btn-action" id="btnCopy" type="button">Copy Subject + Body</button>
+          <button class="btn-action" id="btnDownload" type="button">Download .txt</button>
+          <button class="btn-action btn-regen" id="btnRegen" type="button">Regenerate</button>
+        </div>
+
+        <div class="output-section followup-section" id="followupSection" hidden>
+          <div class="section-header">
+            <h3 class="section-title">Follow-Up Sequence</h3>
+            <span class="section-badge">3-email drip</span>
+          </div>
+          <div class="followup-emails" id="followupEmails"></div>
+          <div class="action-row">
+            <button class="btn-action" id="btnCopyFollowup" type="button">Copy All Follow-Ups</button>
+            <button class="btn-action" id="btnDownloadFollowup" type="button">Download Follow-Ups .txt</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>ColdEmailGen &mdash; Built for sales pros. No backend, no APIs, 100% private.</p>
+  </footer>
+
+  <div class="toast" id="toast" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
